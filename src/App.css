@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.Red {
+  color:red
+}
+.Green {
+  color: green;
+}
+
+.active {
+  color:blue;
+  font-size: 20px;
+}

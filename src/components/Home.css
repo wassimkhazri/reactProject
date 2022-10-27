@@ -1,0 +1,40 @@
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 50%;
+    margin-left: 20px;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+  
+  table, th, td {
+    border:1px solid black;
+    
+  }
+  h1 {
+    font-size: 100px;
+    padding-top: 50px;
+    color: cornflowerblue;
+    margin-left: 20px;
+    text-shadow: 2px 2px 4px #000000;
+    position: relative;
+    animation: mymove 5s infinite;
+  }
+  @keyframes mymove {
+    from {left: 20px;}
+    to {left: 150px;}
+  }
+  .stl {
+    background-image: url("C:\Users\Wassim Khazri\myfirstreact\public\img1.png");
+    width:100vw;
+    height: 100vh;
+  }
