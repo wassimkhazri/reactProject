@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import Select from 'react-select';
-import AuthorService from "../services/AuthorService";
+
 
 // const options = [
 //   { value: 'chocolate', label: 'Chocolate' },
@@ -14,16 +13,16 @@ export default class Voila extends Component {
   state = {
     authors: [],
     author: {
-        id: null,
-        name: undefined,
-        adress: undefined,
-        phonenumber: 0
+      id: null,
+      name: undefined,
+      adress: undefined,
+      phonenumber: 0
     },
-    selectedOption: null, 
+    selectedOption: null,
   };
-  componentDidMount(){
+  componentDidMount() {
     axios.get(url).then((response) => this.setState({ authors: response.data }))
-    
+
   }
   handleChange = (selectedOption) => {
     this.setState({ selectedOption }, () =>
@@ -31,29 +30,26 @@ export default class Voila extends Component {
     );
   };
   render() {
-    const { selectedOption } = this.state.authors;
-
+    // const { selectedOption } = this.state.authors;
+    // let options = this.state.authors.map(function (author) {
+    //   return { value: author.id, label: author.name };
+    // })
     return (
-<Select
-                
-                value={selectedOption}
-                onChange={this.handleChange}
-                options={this.state.authors.map((item, index) => {
-                    return (
-                        <option key={item.id} children={item.children}>
-                            {item.children}
-                        </option>
-                    );
-                })}
-    
-
-
-        
-    //   <Select
-    //     value={selectedOption}
-    //     onChange={this.handleChange}
-    //     options={options}
-      />
+      <select className="form-select" 
+        value={this.state.value}
+        name={this.state.name}
+        onChange={this.state.handleChange} // assigning the function, so it can be trigged with all argument
+      >
+        {
+          this.state.authors.map((item, index) => {
+            return <option value={index}>{item.name}</option>
+          })
+        }
+      </select>
     );
+  
+
   }
 }
+
+

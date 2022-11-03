@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const BOOK_API_BASE_URL ="http://localhost:9000/api/books";
-const BOOK_API_BASE_URL1 ="http://localhost:9000/api/bookById";
+const BOOK_API_BASE_URL ="http://localhost:9000/api/tags";
+// const BOOK_API_BASE_URL1 ="http://localhost:9000/api/bookById";
 // const BOOK_API_BASE_URL2= "http://localhost:9000/api/authors/{authorId}/books"
 class BookService {
 
-    getBooks(){
+    getTags(){
         return axios.get(BOOK_API_BASE_URL);
     }
 

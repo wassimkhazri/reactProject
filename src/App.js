@@ -13,6 +13,14 @@ import Book from './components/Book';
 import AddBook from './components/AddBook';
 import UpdateBook from './components/UpdateBook';
 import Voila from './components/voila';
+import Library from './components/Library';
+import AddLibrary from './components/AddLibrary';
+import UpdateLibrary from './components/UpdateLibrary';
+import Employee from './components/Employee';
+import AddEmployee from './components/AddEmployee';
+import UpdateEmployee from './components/UpdateEmployee';
+import EmployeeLibrary from './components/EmployeeByLibrary';
+import EmployeeList from './components/EmployeeList';
 
 export default class App extends Component {
   render(){
@@ -40,6 +48,21 @@ export default class App extends Component {
                 Authors
               </Link>
             </li>
+            <li className="nav-item">
+              <Link to="/library" className="nav-link">
+                Libraries
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/employee" className="nav-link">
+                Employees
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/employeelibrary" className="nav-link">
+                EmployeeByLibrary
+              </Link>
+            </li>
           </div>
         </nav>
    
@@ -61,8 +84,21 @@ export default class App extends Component {
 <Route path="/add-author/" exact element = {<AddAuthor/>}></Route>
 <Route path="/update-author/:id" exact element = {<UpdateAuthor/>}></Route>
 
+
+{/* Library */}
+<Route path="/library/*" exact element={<Library/>}/>
+<Route path="/add-library/" exact element = {<AddLibrary/>}></Route>
+<Route path="/update-library/:id" exact element = {<UpdateLibrary/>}></Route>
+
+{/* Employee */}
+<Route path="/employee/*" exact element={<Employee/>}/>
+ <Route path="/add-employee/" exact element = {<AddEmployee/>}></Route>
+<Route path="/update-employee/:id" exact element = {<UpdateEmployee/>}></Route> 
+
 {/* Exemple */}
 <Route path="/voila" element={<Voila />} />
+<Route path="/employeelibrary" element={<EmployeeLibrary />} />
+<Route path = "/view-employee/:id" exact element = {<EmployeeList/>}></Route>
 
 </Routes>
 

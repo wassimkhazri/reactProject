@@ -6,11 +6,10 @@ import BookService from "../services/BookService";
 import AddBook from "./AddBook";
 import UpdateBook from "./UpdateBook";
 
-//const url ="http://localhost:9000/api/books";
-const url ="http://localhost:9000/api/tags";
+const url ="http://localhost:9000/api/books";
 const url1 ="http://localhost:9000/api/deleteBook/";
 
-export default class Book extends Component {
+export default class Tag extends Component {
 
     constructor(props) {
         super(props);
@@ -19,12 +18,13 @@ export default class Book extends Component {
             tag: {
                 id: null,
                 name: undefined
+                
+              
             }
         }
     }
 componentDidMount(){
-    // BookService.getBooks().then((response) => this.setState({ books:response.data }))
-    axios.get(url).then((response)=>this.setState({tags:response.data}))
+    BookService.getBooks().then((response) => this.setState({ books:response.data }))
 }
 // componentDidUpdate() {
 
@@ -50,13 +50,13 @@ deleteBook=()=>{
                             <table className="col-md-10 offset-md-1 border rounded p-4 mt-2 shadow">
                                 <tr>
                                     <th>Name</th>
-                                    {/* <th>Page Number</th> */}
+                                    <th>Page Number</th>
                                     <th></th>
                                 </tr>
-                                {this.state.tags.map((item, index) =>
+                                {this.state.books.map((item, index) =>
                                     <tr key={index}>
                                         <td>{item.name}</td>
-                                        {/* <td>{item.page}</td> */}
+                                        <td>{item.page}</td>
                                         <td>
                                             <button className="btn btn-outline-danger" onClick={() => axios.delete(url1 + item.id)} >Delete</button>
                                             <Link style={{ marginLeft: "12px" }} className="btn btn-outline-warning" to={`/update-book/${item.id}`}>Edit</Link>

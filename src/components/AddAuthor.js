@@ -3,21 +3,33 @@ import { Component } from "react";
 import { Link } from "react-router-dom";
 
 
-
+//const url2 = "http://localhost:9000/api/tags";
+// const url = "http://localhost:9000/api/authors";
 const url = "http://localhost:9000/api/addAuthor";
-const url1 = "http://localhost:9000/api/author";
+const url1 = "http://localhost:9000/api/authors";
+const url2 = "http://localhost:9000/api/books";
 export default class AddAuthor extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            books: [],
             author: {
                 name: "",
                 adress: "",
-                phonenumber: 0
+                phonenumber: 0,
+                book: {
+                    id: null,
+                    name: "",
+                    page:0
+                }
             }
 
         }
 
+    }
+    componentDidMount() {
+         axios.get(url2).then((response) => this.setState({ books: response.data }))
+        // axios.get(url2).then((response) => this.setState({ tags: response.data }))
     }
     handleName = (e) => {
         this.setState({
@@ -43,8 +55,27 @@ export default class AddAuthor extends Component {
             }
         })
     }
+    handleBook = (e) => {
+        console.log(e.target.value)
+        this.setState({
+            author: {
+                ...this.state.author,
+                book: this.state.books[e.target.value]
+            }
+        })
+    }
+    // handleTag = (e) => {
+    //     console.log(e.target.value)
+    //     this.setState({
+    //         author: {
+    //             ...this.state.author,
+    //             tag: this.state.tags[e.target.value]
+    //         }
+    //     })
+    // }
     handleSubmit = () => {
-        axios.post(url, this.state.author).then((response) => axios.get(url1)
+        axios.post(url, this.state.author).then((response) => axios.get(url)
+      // .then(axios.post(`http://localhost:9000/api/authors/${15}/tags`))
         )
 
     }
@@ -83,6 +114,22 @@ export default class AddAuthor extends Component {
                                     <label> Phone Number: </label>
                                     <input placeholder="Phone Number" name="phonenumber" className="form-control"
                                         value={this.state.author.phonenumber} onChange={this.handlePhonenumber} />
+                                </div>
+                                <div className="form-group">
+                                    <label> Book: </label>
+                                    {/* <select options={ this.state.libraries } name="library_id"  value={this.state.employee.library_id} 
+                                    onChange={(e)=>this.setState({employee:{library_id:e.value}})} /> */}
+
+                                    <select  className="form-select form-select-lg mb-3"   style={{marginLeft:"12px"}}
+                                    
+                                    value={this.state.value} 
+                                    onChange={this.handleBook} >
+                                    <option selected>Open this select menu</option>
+                                    {this.state.books.map((book,index) => (
+                                    <option value={index}>{book.name}</option>
+                                        ))}
+                                    </select>
+
                                 </div>
                                 <br />
                                 <Link style={{ marginLeft: "12px" }} to="/author" className="btn btn-outline-primary" onClick={this.handleSubmit}>Send</Link>
